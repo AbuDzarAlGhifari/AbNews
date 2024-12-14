@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchTopHeadlines } from '../../lib/api/news';
+import { fetchTopHeadlines } from '@/lib/api/news';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchNews = createAsyncThunk('news/fetchNews', async (params) => {
   const data = await fetchTopHeadlines(params);
