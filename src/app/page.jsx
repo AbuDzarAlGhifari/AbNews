@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { fetchHeadlines } from '@/lib/api/news';
 import { IoIosArrowDown } from 'react-icons/io';
+import CardHeadline from '@/components/common/CardHeadline';
 
 const HomePage = () => {
   const [headlines, setHeadlines] = useState([]);
@@ -14,8 +15,7 @@ const HomePage = () => {
       setLoading(true);
       try {
         const data = await fetchHeadlines('us');
-        console.log('Headlines:', data); // Debugging
-        // Filter headlines yang hanya memiliki gambar
+        console.log('Headlines:', data);
         const filteredHeadlines = data.filter(
           (headline) => headline.urlToImage
         );
@@ -33,8 +33,7 @@ const HomePage = () => {
   return (
     <div className="container mx-auto mt-8">
       {/* Hero Section */}
-      <div className="flex items-start justify-start text-black ">
-        {/* Content */}
+      <div className="flex items-start justify-start text-black">
         <div className="max-w-4xl px-4 py-12 sm:px-16 sm:py-16">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">
             Stay Informed, Stay Ahead
@@ -49,8 +48,6 @@ const HomePage = () => {
           >
             Explore News
           </Link>
-
-          {/* Illustration */}
           <div className="mt-6">
             <p className="text-sm font-light text-gray-700">
               Scroll down to discover more
@@ -68,32 +65,7 @@ const HomePage = () => {
         ) : headlines.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {headlines.map((headline, index) => (
-              <div
-                key={index}
-                className="overflow-hidden bg-white rounded-lg shadow-md hover:shadow-lg"
-              >
-                <img
-                  src={headline.urlToImage}
-                  alt={headline.title}
-                  className="object-cover w-full h-48"
-                />
-                <div className="p-4">
-                  <h3 className="mb-2 text-lg font-semibold text-gray-800 line-clamp-2">
-                    {headline.title}
-                  </h3>
-                  <p className="mb-4 text-sm text-gray-600 line-clamp-3">
-                    {headline.description}
-                  </p>
-                  <Link
-                    href={headline.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-medium text-blue-500 hover:underline"
-                  >
-                    Read More
-                  </Link>
-                </div>
-              </div>
+              <CardHeadline key={index} headline={headline} />
             ))}
           </div>
         ) : (
