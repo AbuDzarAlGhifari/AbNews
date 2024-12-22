@@ -7,19 +7,20 @@ import Loader from '@/components/common/Loader';
 import useNews from './hooks/useNews';
 
 const NewsList = () => {
-  const { articles, loading } = useNews();
+  const { articles, loading, error } = useNews();
 
   if (loading) return <Loader />;
+  if (error) return <div className="text-center text-red-500">{error}</div>;
 
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {articles.map((article) => (
-        <Card key={article.slug} article={article}>
+    <div className="space-y-6">
+      {articles.map((article, index) => (
+        <Card key={article.id || `${article.slug}-${index}`} article={article}>
           <Link
             href={`/news/${article.slug}`}
-            className="inline-block mt-2 text-blue-500"
+            className="inline-block mt-2 font-semibold text-blue-500"
           >
-            Read More
+            Read More →
           </Link>
         </Card>
       ))}
