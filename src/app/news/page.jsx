@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Card from '@/components/common/Card';
 import Loader from '@/components/common/Loader';
 import useNews from '@/hooks/useNews';
+import HeroSection from './layout/HeroSection';
 
 const NewsPage = () => {
   const params = { country: 'us', page: 1, pageSize: 10 };
@@ -16,6 +17,7 @@ const NewsPage = () => {
 
   return (
     <div className="p-4 mx-auto ">
+      <HeroSection />
       <h1 className="mb-4 text-3xl font-bold">Trending News</h1>
       <div className="space-y-6">
         {articles.map((article, index) => (
