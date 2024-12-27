@@ -1,68 +1,58 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import CardHero from '../components/CardHero';
 import CardGrid from '../components/CardGrid';
 import CardSide from '../components/CardSide';
-import { dummy_image } from '@/assets/index';
+import { fetchHeadlines } from '@/lib/api/news';
 
 const HeroSection = () => {
-  // Data untuk card
-  const data = [
-    {
-      category: 'Category',
-      title:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta possimus sit',
-      image: dummy_image,
-    },
-    {
-      category: 'Category',
-      title:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta possimus sit',
-      image: dummy_image,
-    },
-    {
-      category: 'Category',
-      title:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta possimus sit',
-      image: dummy_image,
-    },
-    {
-      category: 'Category',
-      title:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta possimus sit',
-      image: dummy_image,
-    },
-    {
-      category: 'Category',
-      title:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta possimus sit',
-      image: dummy_image,
-    },
-  ];
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Data untuk Grid dan Side Cards
-  const gridData = data.slice(1, 4); // 3 data untuk grid
-  const sideCardData = data.slice(1); // 4 data untuk side cards
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const articles = await fetchHeadlines('us', 10);
+      setData(articles);
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <div className="text-center">Loading...</div>;
+  }
+
+  if (data.length === 0) {
+    return <div className="text-center">No news available</div>;
+  }
+
+  const gridData = data.slice(1, 4);
+  const sideCardData = data.slice(4, 8);
 
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-      {/* Section Kiri: Hero dan Grid */}
-      <div className="col-span-2 space-y-6">
-        {/* Hero Card */}
-        <CardHero data={data[0]} />
+    <div className="container px-4 mx-auto md:px-6 lg:px-8">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="col-span-1 space-y-6 md:col-span-2">
+          {/* Hero Card */}
+          <CardHero data={data[0]} />
 
-        {/* Grid Cards */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {gridData.map((item, index) => (
-            <CardGrid key={index} data={item} />
+          {/* Grid Cards */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {gridData.map((item, index) => (
+              <CardGrid key={index} data={item} />
+            ))}
+          </div>
+        </div>
+
+        {/* Side Cards */}
+        <div className="flex flex-col gap-4">
+          {sideCardData.map((item, index) => (
+            <CardSide key={index} data={item} />
           ))}
         </div>
-      </div>
-
-      {/* Section Kanan: Side Cards */}
-      <div className="flex flex-col gap-4">
-        {sideCardData.map((item, index) => (
-          <CardSide key={index} data={item} />
-        ))}
       </div>
     </div>
   );
