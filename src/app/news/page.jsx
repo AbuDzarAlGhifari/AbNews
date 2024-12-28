@@ -19,7 +19,6 @@ const NewsPage = () => {
   return (
     <div className="p-4 mx-auto ">
       <HeroSection />
-      <h1 className="mb-4 text-3xl font-bold">Trending News</h1>
       <SliderSection />
       <div className="space-y-6">
         {articles.map((article, index) => (
