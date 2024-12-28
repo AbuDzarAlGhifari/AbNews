@@ -58,7 +58,7 @@ const HomePage = () => {
       </div>
 
       {/* Headline Section */}
-      <div className="mt-12">
+      <div className="px-10 mt-12">
         <h2 className="mb-6 text-2xl font-bold text-gray-800">Top Headlines</h2>
         {loading ? (
           <p className="text-center text-gray-500">Loading headlines...</p>

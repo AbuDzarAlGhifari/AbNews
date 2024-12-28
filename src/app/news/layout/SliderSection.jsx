@@ -18,7 +18,7 @@ const SliderSection = () => {
   }, []);
 
   return (
-    <div className="relative px-4 py-6 mx-auto pt-9 md:px-6 lg:px-8">
+    <div className="relative px-4 mx-auto md:px-6 lg:px-8">
       <h2 className="mb-3 text-2xl font-bold text-gray-800">Weekly Top News</h2>
 
       <div className="relative">
