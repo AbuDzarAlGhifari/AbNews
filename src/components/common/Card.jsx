@@ -37,7 +37,7 @@ const Card = ({ article, children }) => {
           )}
         </div>
 
-        {/* Children */}
+        {/* Children (e.g., Read More Link) */}
         <div className="mt-4">{children}</div>
       </div>
     </div>
