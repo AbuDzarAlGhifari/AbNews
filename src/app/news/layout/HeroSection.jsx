@@ -30,10 +30,10 @@ const HeroSection = () => {
   }
 
   const gridData = data.slice(1, 4);
-  const sideCardData = data.slice(4, 8);
+  const sideCardData = data.slice(4, 10);
 
   return (
-    <div className="container px-4 mx-auto md:px-6 lg:px-8">
+    <div className="px-4 mx-auto md:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <div className="col-span-1 space-y-6 md:col-span-2">
           {/* Hero Card */}

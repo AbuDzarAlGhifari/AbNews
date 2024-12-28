@@ -16,7 +16,7 @@ const CardHero = ({ data }) => {
         <span className="px-3 py-1 text-sm font-semibold text-black bg-white rounded bg-opacity-55">
           {data.source?.name || 'Unknown'}
         </span>
-        <h2 className="mt-2 text-2xl font-bold leading-tight line-clamp-2 hover:line-clamp-none">
+        <h2 className="mt-2 text-2xl font-bold leading-tight line-clamp-2">
           {data.title}
         </h2>
       </div>
