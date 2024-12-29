@@ -5,6 +5,7 @@ import useNews from '@/hooks/useNews';
 import HeroSection from './layout/HeroSection';
 import SliderSection from './layout/SliderSection';
 import HotNewsSection from './layout/HotNewsSection';
+import GlobalNewsSection from './layout/GlobalNewsSection';
 
 const NewsPage = () => {
   const { articles, error, isLoading } = useNews();
@@ -22,6 +23,12 @@ const NewsPage = () => {
 
       {/* Slider Section */}
       <SliderSection />
+
+      <div className="p-8 mx-auto">
+        <hr />
+      </div>
+
+      <GlobalNewsSection />
 
       <div className="p-8 mx-auto">
         <hr />

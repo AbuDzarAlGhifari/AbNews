@@ -3,13 +3,11 @@ import React from 'react';
 const CardGrid = ({ data }) => {
   if (!data) return null;
 
-  const imageUrl = data.urlToImage || '/placeholder.jpg';
-
   return (
     <div className="relative w-full h-56 overflow-hidden rounded-lg shadow-md group">
       {/* Image Section */}
       <img
-        src={imageUrl}
+        src={data.urlToImage}
         alt={data.title}
         className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
       />

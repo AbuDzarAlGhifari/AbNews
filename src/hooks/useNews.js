@@ -14,11 +14,19 @@ const useNews = () => {
       try {
         setLoading(true);
         const response = await fetchNewsAPI();
-        const newsWithSlugs = response.map((article) => ({
+
+        // Filter articles that have an image
+        const filteredNews = response.filter((article) => article.urlToImage);
+
+        const newsWithSlugs = filteredNews.map((article) => ({
           ...article,
           slug: slugify(article.title, { lower: true, strict: true }),
         }));
-        setArticles(newsWithSlugs);
+
+        // Shuffle articles randomly
+        const shuffledNews = newsWithSlugs.sort(() => Math.random() - 0.5);
+
+        setArticles(shuffledNews);
         setError(null);
       } catch (err) {
         setError('Failed to load news. Please try again.');

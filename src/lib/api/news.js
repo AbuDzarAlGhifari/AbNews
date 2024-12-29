@@ -64,3 +64,22 @@ export const fetchNewsAPI = async () => {
     return [];
   }
 };
+
+export const fetchNewsSources = async (country = '', category = '') => {
+  try {
+    const response = await axiosInstance.get('/top-headlines/sources', {
+      params: {
+        apiKey: API_KEY,
+        country,
+        category,
+      },
+    });
+    return response.data.sources || [];
+  } catch (error) {
+    console.error(
+      'Error fetching news sources:',
+      error.response?.data || error.message
+    );
+    return [];
+  }
+};
