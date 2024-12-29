@@ -68,10 +68,23 @@ const GlobalNewsSection = () => {
 
       {/* Content */}
       {loading ? (
-        <div className="flex items-center justify-center h-40">
-          <p className="text-lg font-semibold text-black animate-pulse">
-            Loading...
-          </p>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {Array(6)
+            .fill()
+            .map((_, index) => (
+              <div
+                key={index}
+                className="p-6 transition-shadow bg-white border rounded-lg shadow-lg animate-pulse"
+              >
+                <div className="w-2/3 h-6 bg-gray-300 rounded-md"></div>
+                <div className="w-full h-4 mt-4 bg-gray-300 rounded-md"></div>
+                <div className="w-5/6 h-4 mt-2 bg-gray-300 rounded-md"></div>
+                <div className="flex items-center justify-between mt-4">
+                  <div className="w-1/3 h-4 bg-gray-300 rounded-md"></div>
+                  <div className="w-1/4 h-4 bg-gray-300 rounded-md"></div>
+                </div>
+              </div>
+            ))}
         </div>
       ) : error ? (
         <div className="flex items-center justify-center h-40">
