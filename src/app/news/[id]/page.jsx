@@ -1,5 +1,4 @@
 import { fetchNewsAPI } from '@/lib/api/news';
-import Link from 'next/link';
 import slugify from 'slugify';
 
 const NewsDetail = async ({ params }) => {
