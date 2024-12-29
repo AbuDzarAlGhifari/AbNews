@@ -1,10 +1,9 @@
 'use client';
 
-import { no_image } from '@/assets/index';
 import React from 'react';
 
 const Card = ({ article, children }) => {
-  const imageSrc = article.urlToImage || no_image;
+  const imageSrc = article.urlToImage;
 
   return (
     <div className="flex flex-col gap-4 p-4 my-5 transition-shadow duration-300 bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row hover:shadow-md">

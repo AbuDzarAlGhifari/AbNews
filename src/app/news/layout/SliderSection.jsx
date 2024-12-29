@@ -76,7 +76,7 @@ const SliderSection = () => {
                   <div className="my-2 overflow-hidden bg-white rounded-lg shadow-md">
                     <div className="relative">
                       <img
-                        src={item.urlToImage || '/placeholder-image.jpg'}
+                        src={item.urlToImage}
                         alt={item.title}
                         className="object-cover w-full h-40 rounded-t-lg"
                       />

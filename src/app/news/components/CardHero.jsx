@@ -6,7 +6,7 @@ const CardHero = ({ data }) => {
   return (
     <div className="relative w-full h-[450px] rounded-lg overflow-hidden shadow-lg">
       <img
-        src={data.urlToImage || '/placeholder.jpg'}
+        src={data.urlToImage}
         alt={data.title}
         className="object-cover w-full h-full"
         layout="fill"

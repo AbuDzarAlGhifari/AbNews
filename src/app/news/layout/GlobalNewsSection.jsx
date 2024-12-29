@@ -2,7 +2,8 @@
 
 import { fetchNewsSources } from '@/lib/api/news';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 const countries = [
   { code: '', name: 'All' },
@@ -19,6 +20,9 @@ const GlobalNewsSection = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [visibleCount, setVisibleCount] = useState(6);
+
+  const countryButtonsRef = useRef([]);
+  const newsCardsRef = useRef([]);
 
   useEffect(() => {
     const fetchSources = async () => {
@@ -37,19 +41,38 @@ const GlobalNewsSection = () => {
     fetchSources();
   }, [selectedCountry]);
 
+  useEffect(() => {
+    gsap.fromTo(
+      countryButtonsRef.current,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 }
+    );
+  }, []);
+
+  useEffect(() => {
+    if (!loading && sources.length > 0) {
+      gsap.fromTo(
+        newsCardsRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 }
+      );
+    }
+  }, [loading, sources]);
+
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 6);
   };
 
   return (
-    <div className="px-2 mx-auto my-8 sm:px-8">
+    <div className="px-2 mx-auto mt-2 sm:px-8">
       <div className="items-center justify-between sm:flex">
         <h2 className="mb-3 text-2xl font-bold text-gray-800">Global News</h2>
         {/* Tabs for Countries */}
         <div className="flex items-center mb-6 space-x-2 overflow-x-auto scrollbar-hide">
-          {countries.map((country) => (
+          {countries.map((country, index) => (
             <button
               key={country.code}
+              ref={(el) => (countryButtonsRef.current[index] = el)}
               onClick={() => {
                 setSelectedCountry(country.code);
                 setVisibleCount(6);
@@ -74,7 +97,7 @@ const GlobalNewsSection = () => {
             .map((_, index) => (
               <div
                 key={index}
-                className="p-6 transition-shadow bg-white border rounded-lg shadow-lg animate-pulse"
+                className="p-6 transition-shadow bg-white border rounded-lg shadow-md animate-pulse"
               >
                 <div className="w-2/3 h-6 bg-gray-300 rounded-md"></div>
                 <div className="w-full h-4 mt-4 bg-gray-300 rounded-md"></div>
@@ -93,10 +116,11 @@ const GlobalNewsSection = () => {
       ) : (
         <>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {sources.slice(0, visibleCount).map((source) => (
+            {sources.slice(0, visibleCount).map((source, index) => (
               <div
                 key={source.id}
-                className="p-6 transition-shadow bg-white border rounded-lg shadow-lg hover:shadow-xl"
+                ref={(el) => (newsCardsRef.current[index] = el)}
+                className="p-6 transition-shadow bg-white border rounded-lg shadow-md"
               >
                 <h3 className="text-lg font-bold text-black">{source.name}</h3>
                 <p className="mt-2 text-sm text-gray-600">
