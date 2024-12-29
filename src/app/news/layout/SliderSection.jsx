@@ -1,4 +1,4 @@
-import { fetchHeadlines } from '@/lib/api/news';
+import { fetchNewsByQuery } from '@/lib/api/news';
 import { useEffect, useRef, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { Navigation } from 'swiper/modules';
@@ -7,21 +7,21 @@ import gsap from 'gsap';
 import 'swiper/swiper-bundle.css';
 
 const SliderSection = () => {
-  const [headlines, setHeadlines] = useState([]);
+  const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Ref untuk GSAP
   const slideContainerRef = useRef(null);
 
   useEffect(() => {
-    const getHeadlines = async () => {
+    const getNews = async () => {
       setIsLoading(true);
-      const data = await fetchHeadlines('us', 8);
-      setHeadlines(data);
+      const data = await fetchNewsByQuery('latest news', 1, 8); // Query "latest news"
+      setNews(data);
       setIsLoading(false);
     };
 
-    getHeadlines();
+    getNews();
   }, []);
 
   // Animasi dengan GSAP
@@ -43,7 +43,7 @@ const SliderSection = () => {
 
   return (
     <div className="relative px-4 mx-auto md:px-6 lg:px-8">
-      <h2 className="mb-3 text-2xl font-bold text-gray-800">Weekly Top News</h2>
+      <h2 className="mb-3 text-2xl font-bold text-gray-800">Latest News</h2>
 
       <div className="relative">
         {isLoading ? (
@@ -71,7 +71,7 @@ const SliderSection = () => {
             }}
           >
             <div ref={slideContainerRef}>
-              {headlines.map((item, index) => (
+              {news.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div className="my-2 overflow-hidden bg-white rounded-lg shadow-md">
                     <div className="relative">

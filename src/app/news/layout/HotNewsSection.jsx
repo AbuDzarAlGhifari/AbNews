@@ -47,7 +47,7 @@ const HotNewsSection = ({ articles, isLoading }) => {
                 <Card article={article}>
                   <Link
                     href={`/news/${article.slug}`}
-                    className="inline-block mt-2 font-semibold text-blue-500 transition duration-300 hover:text-blue-700"
+                    className="inline-block mt-2 font-semibold text-black transition duration-300 hover:text-gray-800"
                   >
                     Read More →
                   </Link>
