@@ -29,11 +29,11 @@ const NewsDetail = async ({ params }) => {
       </div>
 
       {article.urlToImage && (
-        <div className="relative w-full h-64 mb-6 overflow-hidden rounded-lg shadow-md">
+        <div className="relative w-full h-auto mb-6 overflow-hidden rounded-lg shadow-md">
           <img
             src={article.urlToImage}
             alt={article.title}
-            className="object-cover w-full h-full"
+            className="object-cover object-top w-full h-full"
           />
         </div>
       )}

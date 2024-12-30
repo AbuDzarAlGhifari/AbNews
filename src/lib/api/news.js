@@ -83,3 +83,28 @@ export const fetchNewsSources = async (country = '', category = '') => {
     return [];
   }
 };
+
+export const fetchNewsByCategory = async (
+  category,
+  page = 1,
+  pageSize = 10
+) => {
+  try {
+    const response = await axiosInstance.get('/top-headlines', {
+      params: {
+        category,
+        page,
+        pageSize,
+        apiKey: API_KEY,
+        country: 'us',
+      },
+    });
+    return response.data.articles || [];
+  } catch (error) {
+    console.error(
+      'Error fetching category news:',
+      error.response?.data || error.message
+    );
+    return [];
+  }
+};

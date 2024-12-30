@@ -10,7 +10,6 @@ const HotNewsSection = ({ articles, isLoading }) => {
 
   useEffect(() => {
     if (!isLoading && articles.length > 0) {
-      // GSAP Animation
       gsap.from(articlesRef.current, {
         opacity: 0,
         y: 50,
@@ -28,8 +27,7 @@ const HotNewsSection = ({ articles, isLoading }) => {
       </h2>
       <div className="px-2 space-y-6 sm:px-8">
         {isLoading
-          ? // Skeleton Loading
-            Array.from({ length: 5 }).map((_, index) => (
+          ? Array.from({ length: 5 }).map((_, index) => (
               <div
                 key={index}
                 className="p-4 bg-gray-300 rounded-lg shadow-md animate-pulse"
@@ -42,7 +40,7 @@ const HotNewsSection = ({ articles, isLoading }) => {
           : articles.slice(0, 5).map((article, index) => (
               <div
                 key={article.id || `${article.slug}-${index}`}
-                ref={(el) => (articlesRef.current[index] = el)} // Assign ref for animation
+                ref={(el) => (articlesRef.current[index] = el)}
               >
                 <Card article={article}>
                   <Link
