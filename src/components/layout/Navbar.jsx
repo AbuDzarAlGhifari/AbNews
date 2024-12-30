@@ -4,13 +4,10 @@ import { logo_web } from '@/assets/index';
 import useCategories from '@/hooks/useCategories';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import { HiSearchCircle } from 'react-icons/hi';
-import { IoSearch } from 'react-icons/io5';
 
 const Navbar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isSearchActive, setIsSearchActive] = useState(false);
+  // const [searchTerm, setSearchTerm] = useState('');
+  // const [isSearchActive, setIsSearchActive] = useState(false);
   const { categories, loading } = useCategories();
 
   return (
@@ -35,7 +32,7 @@ const Navbar = () => {
               category
             </Link>
           </div>
-          <div>
+          {/* <div>
             {isSearchActive ? (
               <form
                 onSubmit={(e) => {
@@ -65,7 +62,7 @@ const Navbar = () => {
                 onClick={() => setIsSearchActive(true)}
               />
             )}
-          </div>
+          </div> */}
         </div>
       </div>
 

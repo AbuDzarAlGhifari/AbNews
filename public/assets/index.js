@@ -1,3 +1,9 @@
 export { default as logo_web } from './logo_web.png';
 export { default as no_image } from './no_image.png';
-export { default as dummy_image } from './dummy_image.jpg';
+export { default as business } from './c_business.jpg';
+export { default as entertainment } from './c_entertainment.jpg';
+export { default as general } from './c_general.jpg';
+export { default as health } from './c_healts.jpg';
+export { default as science } from './c_science.jpg';
+export { default as sports } from './c_sports.jpg';
+export { default as technology } from './c_technology.jpg';
