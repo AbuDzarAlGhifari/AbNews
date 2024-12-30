@@ -1,8 +1,11 @@
+'use client';
+
 import { fetchNewsByQuery } from '@/lib/api/news';
 import { useEffect, useRef, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import 'swiper/swiper-bundle.css';
 
@@ -16,7 +19,7 @@ const SliderSection = () => {
   useEffect(() => {
     const getNews = async () => {
       setIsLoading(true);
-      const data = await fetchNewsByQuery('latest news', 1, 8); // Query "latest news"
+      const data = await fetchNewsByQuery('latest news', 1, 8);
       setNews(data);
       setIsLoading(false);
     };
@@ -73,33 +76,40 @@ const SliderSection = () => {
             <div ref={slideContainerRef}>
               {news.map((item, index) => (
                 <SwiperSlide key={index}>
-                  <div className="my-2 overflow-hidden bg-white rounded-lg shadow-md">
-                    <div className="relative">
-                      <img
-                        src={item.urlToImage}
-                        alt={item.title}
-                        className="object-cover w-full h-40 rounded-t-lg"
-                      />
-                      <span className="absolute px-3 py-1 text-xs font-semibold text-white bg-pink-600 rounded top-2 left-2">
-                        {item.source?.name || 'Unknown'}
-                      </span>
+                  <Link
+                    href={`/news/${item.title
+                      .replace(/ /g, '-')
+                      .toLowerCase()}`}
+                    passHref
+                  >
+                    <div className="block my-2 overflow-hidden transition-shadow duration-300 bg-white rounded-lg shadow-md hover:shadow-lg">
+                      <div className="relative">
+                        <img
+                          src={item.urlToImage || '/placeholder-image.jpg'}
+                          alt={item.title}
+                          className="object-cover w-full h-40 rounded-t-lg"
+                        />
+                        <span className="absolute px-3 py-1 text-xs font-semibold text-white bg-pink-600 rounded top-2 left-2">
+                          {item.source?.name || 'Unknown'}
+                        </span>
+                      </div>
+                      <div className="p-4">
+                        <p className="text-sm text-gray-500">
+                          {new Date(item.publishedAt).toLocaleDateString(
+                            'en-US',
+                            {
+                              day: '2-digit',
+                              month: 'short',
+                              year: 'numeric',
+                            }
+                          )}
+                        </p>
+                        <h3 className="mt-2 text-lg font-semibold text-gray-800 line-clamp-2">
+                          {item.title}
+                        </h3>
+                      </div>
                     </div>
-                    <div className="p-4">
-                      <p className="text-sm text-gray-500">
-                        {new Date(item.publishedAt).toLocaleDateString(
-                          'en-US',
-                          {
-                            day: '2-digit',
-                            month: 'short',
-                            year: 'numeric',
-                          }
-                        )}
-                      </p>
-                      <h3 className="mt-2 text-lg font-semibold text-gray-800 line-clamp-2">
-                        {item.title}
-                      </h3>
-                    </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               ))}
             </div>
