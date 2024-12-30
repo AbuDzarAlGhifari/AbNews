@@ -1,6 +1,6 @@
 import axiosInstance from './axiosInstance';
 
-const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_NEWS_API;
 
 // Fungsi umum untuk fetching data dari NewsAPI
 const fetchNewsData = async (endpoint, params = {}) => {
@@ -51,7 +51,7 @@ export const fetchNewsAPI = async () => {
       params: {
         country: 'us',
         category: 'general',
-        apiKey: process.env.NEXT_PUBLIC_NEWS_API_KEY,
+        apiKey: API_KEY,
       },
     });
 
