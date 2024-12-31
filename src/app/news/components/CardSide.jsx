@@ -15,7 +15,7 @@ const CardSide = ({ data }) => {
         {/* Image Section */}
         <div className="flex-shrink-0 w-full overflow-hidden rounded-md h-28 md:w-20 md:h-20">
           <img
-            src={data.urlToImage || '/placeholder-image.jpg'}
+            src={data.urlToImage}
             alt={data.title}
             className="object-cover object-center w-full h-full transition-transform duration-300 group-hover:scale-105"
           />

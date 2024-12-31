@@ -1,12 +1,10 @@
 import axiosInstance from './axiosInstance';
 
-const API_KEY = process.env.NEXT_PUBLIC_NEWS_API;
-
 // Fungsi umum untuk fetching data dari NewsAPI
 const fetchNewsData = async (endpoint, params = {}) => {
   try {
     const response = await axiosInstance.get(endpoint, {
-      params: { ...params, apiKey: API_KEY },
+      params: { ...params }, // Tidak perlu mengirim apiKey
     });
     return response.data;
   } catch (error) {
@@ -24,7 +22,7 @@ export const fetchHeadlines = async (
   pageSize = 10,
   page = 1
 ) => {
-  const data = await fetchNewsData('/top-headlines', {
+  const data = await fetchNewsData('/headlines', {
     country,
     pageSize,
     page,
@@ -34,24 +32,23 @@ export const fetchHeadlines = async (
 
 // Fetch news by query
 export const fetchNewsByQuery = async (query, page = 1, pageSize = 10) => {
-  const data = await fetchNewsData('/everything', { q: query, page, pageSize });
+  const data = await fetchNewsData('/search', { query, page, pageSize });
   return data?.articles || [];
 };
 
 // Fetch categories
 export const fetchCategories = async () => {
-  const data = await fetchNewsData('/sources');
-  if (!data?.sources) return [];
-  return [...new Set(data.sources.map((source) => source.category))];
+  const categories = await fetchNewsData('/categories');
+  return categories || [];
 };
 
 export const fetchNewsAPI = async () => {
   try {
-    const response = await axiosInstance.get('/top-headlines', {
+    // Tidak perlu lagi mengirimkan API Key dari frontend
+    const response = await axiosInstance.get('/headlines', {
       params: {
         country: 'us',
         category: 'general',
-        apiKey: API_KEY,
       },
     });
 
@@ -65,46 +62,35 @@ export const fetchNewsAPI = async () => {
   }
 };
 
-export const fetchNewsSources = async (country = '', category = '') => {
-  try {
-    const response = await axiosInstance.get('/top-headlines/sources', {
-      params: {
-        apiKey: API_KEY,
-        country,
-        category,
-      },
-    });
-    return response.data.sources || [];
-  } catch (error) {
-    console.error(
-      'Error fetching news sources:',
-      error.response?.data || error.message
-    );
-    return [];
-  }
-};
+// export const fetchNewsSources = async (country = '', category = '') => {
+//   try {
+//     const params = {};
+//     if (country) params.country = country;
+//     if (category) params.category = category;
+
+//     const response = await axiosInstance.get('/top-headlines/sources', {
+//       params,
+//     });
+//     return response.data.sources || [];
+//   } catch (error) {
+//     console.error(
+//       'Error fetching news sources:',
+//       error.response?.data || error.message
+//     );
+//     return [];
+//   }
+// };
 
 export const fetchNewsByCategory = async (
   category,
   page = 1,
   pageSize = 10
 ) => {
-  try {
-    const response = await axiosInstance.get('/top-headlines', {
-      params: {
-        category,
-        page,
-        pageSize,
-        apiKey: API_KEY,
-        country: 'us',
-      },
-    });
-    return response.data.articles || [];
-  } catch (error) {
-    console.error(
-      'Error fetching category news:',
-      error.response?.data || error.message
-    );
-    return [];
-  }
+  const data = await fetchNewsData('/headlines', {
+    category,
+    page,
+    pageSize,
+    country: 'us',
+  });
+  return data?.articles || [];
 };
