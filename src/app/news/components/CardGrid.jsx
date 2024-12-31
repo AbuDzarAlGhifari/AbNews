@@ -14,7 +14,7 @@ const CardGrid = ({ data }) => {
       <div className="relative w-full h-56 overflow-hidden rounded-lg shadow-md group">
         {/* Image Section */}
         <img
-          src={data.urlToImage || '/placeholder-image.jpg'}
+          src={data.urlToImage}
           alt={data.title}
           className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
         />

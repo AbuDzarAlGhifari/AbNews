@@ -23,7 +23,7 @@ const CardHeadline = ({ headline }) => {
       {/* Gambar Headline */}
       <div className="overflow-hidden">
         <img
-          src={headline.urlToImage || '/default-image.jpg'}
+          src={headline.urlToImage}
           alt={headline.title}
           className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-110"
         />

@@ -73,7 +73,7 @@ const Navbar = () => {
           categories.map((category, index) => (
             <Link
               key={index}
-              href={`category/${category}`}
+              href={`/category/${category}`}
               className="text-sm font-medium text-gray-600 capitalize hover:text-black"
             >
               {category}

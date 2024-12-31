@@ -5,7 +5,6 @@ import useNews from '@/hooks/useNews';
 import HeroSection from './layout/HeroSection';
 import SliderSection from './layout/SliderSection';
 import HotNewsSection from './layout/HotNewsSection';
-import GlobalNewsSection from './layout/GlobalNewsSection';
 import { FaArrowUp } from 'react-icons/fa';
 
 const NewsPage = () => {
@@ -53,7 +52,7 @@ const NewsPage = () => {
         <hr />
       </div>
 
-      <GlobalNewsSection />
+      {/* <GlobalNewsSection /> */}
 
       <div className="p-8 mx-auto">
         <hr />

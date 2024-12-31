@@ -14,7 +14,7 @@ const CardHero = ({ data }) => {
       <div className="relative w-full h-[450px] rounded-lg overflow-hidden shadow-lg group block">
         {/* Image Section */}
         <img
-          src={data.urlToImage || '/placeholder-image.jpg'}
+          src={data.urlToImage}
           alt={data.title}
           className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
         />
