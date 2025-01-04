@@ -2,9 +2,9 @@
 
 AbNews is a web-based news application that provides various up-to-date information from various categories. This application is built using React technology. AbNews is designed to provide a responsive, easy-to-use, and informative news reading experience.
 
-## 💻 Screenshots
+## 💻 Preview
 
-![App Screenshot](/public/preview.gif)
+![Web Demo](/public/preview-low.gif)
 
 ## 🚀 Features
 
