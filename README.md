@@ -53,26 +53,26 @@ Ensure you have the following installed on your machine:
 
 3. **Get API [newsapi.org](https://newsapi.org)**:
 
-- Visit NewsAPI.
-- Sign up or log in to your account.
-- Navigate to the API Keys section in your dashboard.
-- Copy the API Key provided.
+   - Visit NewsAPI.
+   - Sign up or log in to your account.
+   - Navigate to the API Keys section in your dashboard.
+   - Copy the API Key provided.
 
 4. **Setup the .env file**:
 
-- Copy the example .env file provided in the repository:
+   - Copy the example .env file provided in the repository:
 
-```bash
-cp .env.example .env
-```
+     ```bash
+     cp .env.example .env
+     ```
 
-- Open the .env file and replace the placeholder value with your NewsAPI Key:
+   - Open the .env file and replace the placeholder value with your NewsAPI Key:
 
-```bash
-NEXT_PUBLIC_NEWS_API=your_api_key_here
-```
+     ```bash
+     NEXT_PUBLIC_NEWS_API=your_api_key_here
+     ```
 
-- Replace your_api_key_here with the API Key you obtained from NewsAPI.
+   - Replace your_api_key_here with the API Key you obtained from NewsAPI.
 
 5. **Start the development server**:
 
