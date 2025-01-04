@@ -1,37 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📰 AbNews
 
-## Getting Started
+AbNews is a web-based news application that provides various up-to-date information from various categories. This application is built using React technology. AbNews is designed to provide a responsive, easy-to-use, and informative news reading experience.
 
-First, run the development server:
+## 💻 Screenshots
+
+![App Screenshot](/public/preview.gif)
+
+## 🚀 Features
+
+- news aggregation from multiple sources.
+- news categories (politics, sports, technology, etc.).
+- showing Hot news from several countries.
+- attractive and modern appearance.
+- responsive design for optimal user experience on any device.
+
+## 👌 API Reference
+
+1. **API sources and documentation**
+
+   ```bash
+   https://newsapi.org/
+   ```
+
+2. **BaseURL**
+   ```bash
+   https://newsapi.org/v2
+   ```
+
+## 🛠 Installation
+
+### Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- [Node.js](https://nodejs.org/) (v16 or newer)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Steps
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/AbuDzarAlGhifari/AbNews.git
+   cd AbNews
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Get API [newsapi.org](https://newsapi.org)**:
+
+- Visit NewsAPI.
+- Sign up or log in to your account.
+- Navigate to the API Keys section in your dashboard.
+- Copy the API Key provided.
+
+4. **Setup the .env file**:
+
+- Copy the example .env file provided in the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Open the .env file and replace the placeholder value with your NewsAPI Key:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+NEXT_PUBLIC_NEWS_API=your_api_key_here
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Replace your_api_key_here with the API Key you obtained from NewsAPI.
 
-## Learn More
+5. **Start the development server**:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+6. **Open the app**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   The app will be running at [http://localhost:3000](http://localhost:3000).
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 💥 Depedency
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# AbNews" 
+### List of libraries and packages used:
+
+- **Next.js** - React framework for server-side rendering and static site generation.
+- **axios** - For making API requests.
+- **gsap** - For animations.
+- **react-icons** - For a collection of customizable icons.
+- **tailwindcss** - For utility-first styling.
